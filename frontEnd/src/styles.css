@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  /* defines 1rem */
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.content {
+  flex: 1 0 auto;
+  min-height: calc(100vh - 100px);
+}
+
+
