@@ -22,6 +22,7 @@ const insecureRoutes = [
     '/',
     '/api/users/login',
     '/api/users/register',
+    '/api/example'
  ]
 
 // Environment

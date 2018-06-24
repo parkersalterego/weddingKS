@@ -1,3 +1,28 @@
-<p>
-  register works!
-</p>
+<div class="register-container">
+    <form (ngSubmit)="onRegisterSubmit(f)" class="register-form" #f="ngForm">
+  
+      <h1 class="register-header">Register</h1>
+  
+      <div class="first-name form-group">
+        <label for="firstName">First Name</label>
+        <input class="input" type="text" id="firstName" name="firstName" ngModel>
+      </div>
+  
+      <div class="last-name form-group">
+        <label for="lastName">Last Name</label>
+        <input class="input" type="text" id="lastName" name="lastName" ngModel>
+      </div>
+      
+      <div class="last-name form-group">
+        <label for="email">Email</label>
+        <input class="input" type="email" id="email" name="email" ngModel>
+      </div>
+  
+      <div class="last-name form-group">
+        <label for="password">Password</label>
+        <input class="input" type="password" id="password" name="password" ngModel>
+      </div>
+  
+      <input class="register-btn" type="submit" value="Register">
+    </form>
+  </div>

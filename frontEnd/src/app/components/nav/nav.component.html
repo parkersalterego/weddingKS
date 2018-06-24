@@ -1,1 +1,19 @@
-<nav class="nav"></nav>
+<div class="ham-menu" (click)="onMenuClick()" #hamMenu>
+    <div class="bar" #barOne></div>
+    <div class="bar" #barTwo></div>
+    <div class="bar" #barThree></div>
+  </div>
+  
+<div class="nav" #navBar>
+  <ul class="nav-ul text-center">
+    <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/rsvp']">R.S.V.P.</li>
+    <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/registry']">Registry</li>
+    <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/details']">Details</li>
+    <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/gallery']">Gallery</li>
+    <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/help']">Help</li>
+  </ul>
+</div>
+
+<div class="logo" routerLink="/">
+
+</div>

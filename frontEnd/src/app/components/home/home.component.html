@@ -1,1 +1,55 @@
-<div class="content"></div>
+<div class="home-container">
+
+  <div class="header">
+    <h2 class="date">September 14th, 2018</h2>
+    <div class="rsvp">
+      <button class="button" routerLink="/rsvp">R.S.V.P.</button>
+    </div>
+  </div>
+
+  <div class="link-container">
+    <!-- <h2 class="title title-one"><a href="https://www.target.com/gift-registry/giftgiver?registryId=f3e802a170444520a8d229cea2850da0&type=WEDDING" target="_blank">Registry</a></h2>
+    <h2 class="title title-two"><a routerLink="/details">Details</a></h2>
+    <h2 class="title title-three"><a routerLink="/gallery">Gallery</a></h2> -->
+
+    <div class="link link-one" #linkOne>
+      <div class="link-one-overlay overlay" #overlayOne>
+        
+        <div class="link-title-group">
+          <a href="https://www.target.com/gift-registry/giftgiver?registryId=f3e802a170444520a8d229cea2850da0&type=WEDDING" target="_blank">
+            <div class="icon-container">
+                <i class="icon fas fa-gift"></i>
+            </div>
+          </a>
+          <a href="https://www.target.com/gift-registry/giftgiver?registryId=f3e802a170444520a8d229cea2850da0&type=WEDDING" target="_blank">
+            <h2 class="icon-title">Registry</h2>
+          </a> 
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="link link-two" #linkTwo>
+      <div class="link-two-overlay overlay" #overlayTwo>
+        <div class="link-title-group">
+          <div class="icon-container" routerLink="/details">
+            <i class="icon fas fa-clipboard-list"></i>
+          </div>
+          <h2 class="icon-title">Details</h2>
+        </div>
+      </div>
+    </div>
+    
+    <div class="link link-three" #linkThree>
+      <div class="link-three-overlay overlay" #overlayThree>
+        <div class="link-title-group">
+          <div class="icon-container" routerLink="/gallery">
+            <i class="icon fas fa-camera"></i>
+          </div>
+          <h2 class="icon-title">Gallery</h2>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
