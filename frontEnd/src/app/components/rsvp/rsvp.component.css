@@ -1,0 +1,5 @@
+.rsvp-container {
+  min-height: calc(100vh - 50px);
+  background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
+  background-size: 20rem;
+}

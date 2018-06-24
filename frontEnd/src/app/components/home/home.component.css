@@ -1,0 +1,258 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-container {
+  min-height: calc(100vh - 50px);
+  display: grid;
+  grid-template-rows: 30rem minmax(30rem, 1fr);
+  background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
+  background-size: 20rem;
+}
+
+.header {
+  grid-row: 1/2;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Stalemate', cursive;
+}
+
+.date {
+  grid-row: 2/3;
+  font-size: 7rem;
+  align-self: center;
+  justify-self: center;
+  color: #000;
+}
+
+.rsvp {
+  grid-row: 3/4;
+  display: grid;
+  
+}
+
+.button {
+  justify-self: center;
+  align-self: center;
+  font-family: 'Stalemate', cursive;
+  font-size: 3rem;
+  width: 10rem;
+  height: 3.5rem;
+  border-radius: .5rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:active {
+  box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+  transform: translateY(2px);
+}
+
+.link-container {
+  grid-row: 2/3;
+  display: grid;
+  margin: 0, 2.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 4rem 1fr;
+  overflow: hidden;
+
+}
+
+.title {
+  font-family: 'Merriweather', serif;
+  font-size: 2.5rem;
+  grid-row: 1/2;
+  margin-left: 2rem;
+  color: #444;
+}
+
+.title-one {
+  grid-column: 1/2;
+}
+
+.title-two {
+  grid-column: 2/3;
+}
+
+.title-three {
+  grid-column: 3/4;
+}
+
+.link {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+.link-one {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  background-image: url('../../../assets/img/weddingKS30.jpg');
+  background-position: top;
+}
+
+.link-two {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  background-image: url('../../../assets/img/weddingKS21.jpg');
+  background-position: top;
+
+}
+
+.link-three {
+  grid-row: 2/3;
+  grid-column: 3/4;
+  background-image: url('../../../assets/img/weddingKS01.jpg');
+  background-position: top;
+
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 2;
+  grid-row: 2/3;
+  transform: translateY(100%);
+  display: grid;
+  grid-template-rows: 1fr 8rem 1fr;
+}
+
+.link-title-group {
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: center;
+  display:grid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-container {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, rgb(165, 242, 243), rgb(37,124,163));
+  outline: none;
+  display: grid;
+}
+
+.fas {
+  font-size: 5rem;
+  color: #f8f8ff;
+  
+}
+
+.icon {
+  align-self: center;
+  justify-self: center;
+}
+
+.icon-title {
+  font-family: 'Stalemate', cursive;
+  margin-left: 1rem;
+  font-size: 5rem;
+  color: #f8f8ff;
+}
+
+.overlay:hover {
+  cursor: pointer;
+}
+
+
+.overlay.slide-up {
+  animation: slide-up .3s ease-out forwards;
+}
+
+.overlay.slide-down {
+  animation: slide-down .3s ease-out forwards;
+}
+
+.overlay.slow-slide-down {
+  animation: slide-down .6s ease-out forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0%)
+  }
+  100% {
+    transform: translateY(100%)
+  }
+}
+
+
+
+@media screen and (max-width: 900px) {
+  .home-container {
+    grid-template-rows: 30rem 157.5rem;
+
+  }
+
+  .link-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 4rem 42.5rem 4rem 42.5rem 4rem 42.5rem;
+    grid-gap: 2.5rem;
+  }
+
+  .title,
+  .link {
+    grid-column: 1/2;
+  }
+
+  .title-one {
+    grid-row: 1/2;
+  }
+
+  .link-one {
+    grid-row: 2/3;
+  }
+
+  .title-two {
+    grid-row: 3/4;
+  }
+
+  .link-two {
+    grid-row: 4/5;
+  }
+
+  .title-three {
+    grid-row: 5/6;
+  }
+
+  .link-three {
+    grid-row: 6/7;
+  }
+
+}
+
+@media screen and (max-width: 420px) {
+  .date {
+    font-size: 5rem
+  }
+}

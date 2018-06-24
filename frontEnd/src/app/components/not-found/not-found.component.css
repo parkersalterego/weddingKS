@@ -1,0 +1,27 @@
+.not-found-container {
+  font-family: 'Stalemate', cursive;
+  height: calc(100vh - 50px);
+  grid-template-rows: 200px 1fr 200px;
+  display: grid;
+  background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
+  background-size: 20rem;
+}
+
+.not-found-sub-container {
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: center;
+}
+
+.four-o-four {
+  font-size: 10rem;
+  text-align: center;
+}
+
+.not-found {
+  font-size: 4rem;
+  text-align: center;
+}
+
+
+
