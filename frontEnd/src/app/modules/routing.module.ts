@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 import { HomeComponent } from '../components/home/home.component';
 import { LoginComponent } from '../components/login/login.component';
@@ -8,6 +8,10 @@ import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { RsvpComponent } from '../components/rsvp/rsvp.component';
 import { DetailsComponent } from '../components/details/details.component';
 import { GalleryComponent } from '../components/gallery/gallery.component';
+import { AdminComponent } from '../components/admin/admin.component';
+
+import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 const appRoutes: Routes = [
   {
@@ -24,7 +28,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'rsvp',
-    component: RsvpComponent
+    component: RsvpComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'details',

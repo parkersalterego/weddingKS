@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RoutingModule } from './modules/routing.module';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,6 +14,18 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { DetailsComponent } from './components/details/details.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AddGuestComponent } from './components/add-guest/add-guest.component';
+import { ManageGuestsComponent } from './components/manage-guests/manage-guests.component';
+import { AddPhotosComponent } from './components/add-photos/add-photos.component';
+import { GuestCountComponent } from './components/guest-count/guest-count.component';
+
+import { JwtHelper} from 'angular2-jwt';
+
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { AuthService } from './services/auth.service';
+import { InvitationService } from './services/invitation.service';
+import { GuestService } from './services/guest.service';
 
 @NgModule({
   declarations: [
@@ -26,13 +39,30 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     RsvpComponent,
     DetailsComponent,
     GalleryComponent,
+    AdminComponent,
+    AddGuestComponent,
+    ManageGuestsComponent,
+    AddPhotosComponent,
+    GuestCountComponent,
+  ],
+  entryComponents: [
+    AddGuestComponent,
+    ManageGuestsComponent,
+    AddPhotosComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    InvitationService,
+    GuestService,
+    CookieService,
+    JwtHelper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

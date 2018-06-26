@@ -1,0 +1,27 @@
+<div class="manage-guests-container">
+  <div class="manage-guests-header">
+    <h1>Manage Guests</h1>
+  </div>
+
+  <div class="title-container">
+    <h2 class="title">First Name</h2>
+    <h2 class="title">last Name</h2>
+    <h2 class="title">Invitation</h2>
+    <h2 class="title">R.S.V.P.</h2>
+    <h2 class="title">Delete</h2>
+  </div>
+
+  <div class="guest-container">
+
+    <div class="guest" *ngFor="let guest of guests; let i = index">
+      <h2 class="first-name guest-text">{{guest.firstName.charAt(0).toUpperCase(0) + guest.firstName.slice(1)}}</h2>
+      <h2 class="last-name guest-text">{{guest.lastName.charAt(0).toUpperCase(0) + guest.lastName.slice(1)}}</h2>
+      <i class="send-invitation fas fa-check" *ngIf="guest.sendInvitation" (click)="onSendInvitationClick(i)"></i>
+      <i class="send-invitation fas fa-times" *ngIf="!guest.sendInvitation" (click)="onSendInvitationClick(i)"></i>
+      <i class="rsvp fas fa-check" *ngIf="guest.rsvp" (click)="onRsvpClick(i)"></i>
+      <i class="rsvp fas fa-times" *ngIf="!guest.rsvp" (click)="onRsvpClick(i)"></i>
+      <i class="delete fas fa-trash" (click)="onDeleteClick(i)"></i>
+    </div>
+
+  </div>
+</div>

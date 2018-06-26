@@ -1,0 +1,60 @@
+.guest-count-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 30rem 1fr;
+  grid-template-rows: 1fr 17rem 1fr;
+}
+
+.guest-count {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  background: linear-gradient(to bottom, #777, #555);
+  display: grid;
+  grid-template-rows: 5rem 1rem 3rem 7rem;
+  border-radius: .5rem;
+  box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+p {
+  grid-row: 1/2;
+  font-size: 1.5rem;
+  color: #f8f8ff;
+  justify-self: center;
+  align-self: center;
+}
+
+input[type="number"] {
+  grid-row: 3/4;
+  width: 30rem;
+  height: 80%;
+  border-radius: .5rem;
+  align-self: center;
+  justify-self: center;
+  border: none;
+  padding-left: 1rem;
+  width: 12rem;
+}
+
+.submit {
+  grid-row: 4/5;
+  height: 3rem;
+  width: 7rem;
+  align-self: center;
+  justify-self: center;
+  border-radius: .5rem;
+  background-color: #000;
+  color: #f8f8ff;
+  border: none;
+  font-family: 'Stalemate', cursive;
+  font-size: 2.5rem;
+  box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.submit:active {
+  transform: translateY(.2rem);
+  box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.submit:focus {
+  outline: none;
+}

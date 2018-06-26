@@ -1,0 +1,44 @@
+<form (ngSubmit)="onGuestAdd(f)" class="invitation-container" #f="ngForm">
+
+  <div class="add-guest-header">
+    <h2>Add Guest</h2>
+  </div>
+
+  <div class="guest">
+    <div class="form-group first-name">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" ngModel #firstName>
+    </div>
+    <div class="form-group last-name">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" ngModel #lastName>
+    </div>
+    <div class="form-group send-invitation">
+      <label for="sendInvitation">Send copy of invitation</label>
+      <input type="checkbox" name="sendInvitation" ngModel #checkBox>
+    </div>
+  </div>
+
+  <div class="add-guest-container">
+    <button type="submit"><i class="fas fa-user-plus"></i></button>
+  </div>
+
+  <div class="added-guests">
+      <div class="agc-header">
+        <h2 class="agc-header-text">Added Guests</h2>
+        <h2 class="agc-header-first-name agc-header-label">First Name</h2>
+        <h2 class="agc-header-last-name agc-header-label">Last Name</h2>
+        <h2 class="agc-header-send-invitation agc-header-label">Invitation</h2>
+        <h2 class="agc-header-rsvp agc-header-label">R.S.V.P.</h2>
+      </div>
+      <div class="added-guests-container" #addedGuests>
+        <div #addAbove></div>
+  
+      </div>
+    </div>
+
+</form>
+
+<!-- <div class="submit-form">
+    <input type="submit" (click)="onSubmitClick()" value="Submit Invitation">
+</div> -->
