@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user.model');
+const Guest = require('../models/guest.model');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
@@ -79,15 +80,20 @@ class UserController {
     async registerUser(req, res, next) {
         try {
             const checkEmail = await User.findOne({'email' : req.body.email, 'is_deleted' : false})
-            if (checkEmail !== null) {
-                res.status(403).json('An account already exists with the provided email or username');
+            const checkGuest = await Guest.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName, 'is_deleted' : false});
+
+            if (checkGuest === null || checkGuest === undefined) {
+                res.status(403).json({'Error' : 'It apears you are not on the guest list'});
             } else {
-                const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS);
-                req.body.password = hash;
-                const user = await User.create(new User(req.body));
-                await UserController.updateSecurityStamp(user)
-                    res.status(200).json(user);
-                
+                if (checkEmail !== null && checkEmail !== undefined) {
+                    res.status(403).json('An account already exists with the provided email or username');
+                } else {
+                    const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+                    req.body.password = hash;
+                    const user = await User.create(new User(req.body));
+                    await UserController.updateSecurityStamp(user)
+                        res.status(200).json(user);
+                }
             }
         } catch (err) {
             next(err);

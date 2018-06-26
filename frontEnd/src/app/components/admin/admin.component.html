@@ -18,6 +18,23 @@
   </div>
 
   <div class="main-container" #componentContainer>
-    <div #selectedComponent></div>
+    <div class="secondary-nav-container">
+      <div class="secondary-nav">
+
+        <i class="fas fa-user-plus" (click)="onAddGuestClick()">
+          <span class="tooltip">Send Invitation</span>
+        </i>
+
+        <i class="fas fa-users" (click)="onManageGuestsClick()">
+          <span class="tooltip">Manage Guests</span>
+        </i>
+
+        <i class="fas fa-camera" (click)="onAddPhotoClick()">
+          <span class="tooltip">Add Photos</span>
+        </i>
+
+      </div>
+    </div>
+    <div class="selected-component" #selectedComponent></div>
   </div>
 </div>
