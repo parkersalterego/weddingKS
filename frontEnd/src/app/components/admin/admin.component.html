@@ -1,0 +1,23 @@
+<div class="admin-container">
+  <div class="left-menu">
+    <div class="menu-item add-guests" (click)="onAddGuestClick()">
+      <i class="fas fa-user-plus">
+        <span class="tooltip">Send Invitation</span>
+      </i>
+    </div>
+    <div class="menu-item manage-guests" (click)="onManageGuestsClick()">
+      <i class="fas fa-users">
+        <span class="tooltip">Manage Guests</span>
+      </i>
+    </div>
+    <div class="menu-item add-photos" (click)="onAddPhotoClick()">
+      <i class="fas fa-camera">
+        <span class="tooltip">Add Photos</span>
+      </i>
+    </div>
+  </div>
+
+  <div class="main-container" #componentContainer>
+    <div #selectedComponent></div>
+  </div>
+</div>

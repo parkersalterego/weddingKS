@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+              private authService: AuthService,
+              private router: Router,
+  ) { }
 
   ngOnInit() {
   }
@@ -15,12 +22,18 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit(form) {
     const value = form.value;
 
-    console.log({
+    this.authService.registerUser({
       firstName: value.firstName,
       lastName: value.lastName,
       email: value.email,
       password: value.password
-    });
+    })
+      .subscribe(data => {
+        if (data) {
+          console.log(data);
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
 }

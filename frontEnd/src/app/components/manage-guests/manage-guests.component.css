@@ -1,0 +1,102 @@
+.manage-guests-container {
+  width: 100%;
+  margin-top: 11rem;
+  display: grid;
+  grid-template-rows: 5rem 5rem 1fr;
+}
+
+.manage-guests-header {
+  grid-row: 1/2;
+  font-family: 'Stalemate', cursive;
+  font-size: 3rem;
+  color: #f8f8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.title-container {
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: .1rem solid #000;
+  margin-bottom: .5rem;
+}
+
+.title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  align-self: center;
+  margin-left: 1rem;
+}
+
+.guest-container {
+  grid-row: 3/4;
+  display: grid;
+}
+
+.guest-container:nth-child(odd) {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.guest-container:nth-child(even) {
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.guest {
+  height: 3rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  color: #f8f8ff;
+}
+
+.first-name {
+  grid-column: 1/2;
+}
+
+.last-name {
+  grid-column: 2/3;
+}
+
+.send-invitation {
+  grid-column: 3/4;
+}
+
+.rsvp {
+  grid-column: 4/5;
+}
+
+.delete {
+  grid-column: 5/6;
+}
+
+.guest-text {
+  align-self: center;
+  margin-left: 1rem;
+}
+
+.fas {
+  font-size: 1.5rem;
+  align-self: center;
+  margin-left: 2.5rem;
+}
+
+.fas:hover {
+  cursor: pointer;
+}
+
+.fas:active {
+  transform: translateY(.2rem);
+}
+
+.fa-check:hover {
+  color: lightgreen;
+}
+
+.fa-times:hover,
+.fa-trash:hover {
+  color: #f08080
+}
+

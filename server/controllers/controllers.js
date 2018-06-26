@@ -1,10 +1,10 @@
 const express = require('express');
 const router = require('express').Router();
 
-const ExampleController = require('./example.controller.js');
 const UserController = require('./user.controller');
+const GuestController = require('./guest.controller');
 
-const exampleController = new ExampleController(router);
 const userController = new UserController(router);
+const guestController = new GuestController(router);
 
 module.exports = router;

@@ -21,8 +21,7 @@ const User = require('./models/user.model');
 const insecureRoutes = [
     '/',
     '/api/users/login',
-    '/api/users/register',
-    '/api/example'
+    '/api/users/register'
  ]
 
 // Environment

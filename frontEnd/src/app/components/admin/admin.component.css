@@ -1,0 +1,76 @@
+.admin-container {
+  min-height: calc(100vh - 50px);
+  background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
+  background-size: 20rem;
+  display: grid;
+  grid-template-columns: 12rem 1fr 10fr 1fr;
+  
+}
+
+.left-menu {
+  display: grid;
+  grid-column: 1/2;
+  background-color: rgba(0, 0, 0, .5);
+  grid-template-rows: 11rem repeat(3, 12rem);
+  grid-gap: 2rem;
+
+}
+
+.menu-item {
+  display: grid;
+}
+
+.menu-item:hover {
+  cursor: pointer;
+}
+
+.add-guests {
+  grid-row: 2/3;
+}
+
+.manage-guests {
+  grid-row: 3/4;
+}
+
+.add-photos {
+  grid-row: 4/5;
+}
+
+.fas {
+  position: relative;
+  font-size: 5rem;
+  align-self: center;
+  justify-self: center;
+  color: #f8f8ff;
+}
+
+.fas:active {
+  transform: translateY(.3rem);
+}
+
+.fas:hover > .tooltip {
+  opacity:1;
+}
+
+.tooltip {
+  opacity: 0;
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  left: 130%;
+  transform: translateY(-50%);
+  width: 10rem;
+  height: 2rem;
+  border-radius: .5rem;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.main-container {
+  grid-column: 3/4;
+  /* background-color: #333; */
+}
+

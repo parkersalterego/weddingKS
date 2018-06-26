@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,6 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  location;
   navBarCount = 0;
   navItems = [];
 
@@ -14,10 +17,23 @@ export class NavComponent implements OnInit {
   @ViewChild('barThree') barThree;
   @ViewChild('navBar') navBar;
 
-  constructor() { }
+  constructor(
+              private authService: AuthService,
+              private router: Router
+  ) {
+    this.location = router.url;
+   }
 
   ngOnInit() {
     this.pushNavItems();
+  }
+
+  isAdmin() {
+    if (this.authService.user === null || this.authService.user === undefined) {
+      return false;
+    } else {
+      return this.authService.user.role === 'admin' ? true : false;
+    }
   }
 
   onMenuClick() {

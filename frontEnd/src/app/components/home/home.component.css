@@ -25,7 +25,7 @@ a {
   font-size: 7rem;
   align-self: center;
   justify-self: center;
-  color: #000;
+  color: #f8f8ff;
 }
 
 .rsvp {
@@ -125,10 +125,9 @@ a {
 .overlay {
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .3);
   z-index: 2;
   grid-row: 2/3;
-  transform: translateY(100%);
   display: grid;
   grid-template-rows: 1fr 8rem 1fr;
 }
@@ -170,43 +169,6 @@ a {
   font-size: 5rem;
   color: #f8f8ff;
 }
-
-.overlay:hover {
-  cursor: pointer;
-}
-
-
-.overlay.slide-up {
-  animation: slide-up .3s ease-out forwards;
-}
-
-.overlay.slide-down {
-  animation: slide-down .3s ease-out forwards;
-}
-
-.overlay.slow-slide-down {
-  animation: slide-down .6s ease-out forwards;
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-@keyframes slide-down {
-  0% {
-    transform: translateY(0%)
-  }
-  100% {
-    transform: translateY(100%)
-  }
-}
-
-
 
 @media screen and (max-width: 900px) {
   .home-container {
