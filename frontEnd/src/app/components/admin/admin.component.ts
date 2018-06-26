@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
 
     this.selectedComponent.createComponent(
-      this.resolver.resolveComponentFactory(ManageGuestsComponent)
+      this.resolver.resolveComponentFactory(AddGuestComponent)
     );
 
   }

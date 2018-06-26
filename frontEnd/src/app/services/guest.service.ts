@@ -53,4 +53,14 @@ export class GuestService {
       .pipe(map(res => res.json()));
   }
 
+  updateGuest(guest) {
+    const token = this.cookieService.get('authToken');
+    const authToken = token.split('"')[1];
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + authToken);
+    return this.http.post(`${environment.api}/guests/update`, guest, {headers: headers})
+      .pipe(map(res => res.json()));
+  }
+
 }

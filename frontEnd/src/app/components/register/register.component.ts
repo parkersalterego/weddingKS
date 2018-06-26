@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
     const value = form.value;
 
     this.authService.registerUser({
-      firstName: value.firstName,
-      lastName: value.lastName,
+      firstName: value.firstName.toLowerCase(),
+      lastName: value.lastName.toLowerCase(),
       email: value.email,
       password: value.password
     })

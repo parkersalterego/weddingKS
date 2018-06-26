@@ -25,8 +25,30 @@ export class ManageGuestsComponent implements OnInit {
   }
 
   onDeleteClick(i) {
-    console.log(this.guests[i]._id);
-    this.guestService.deleteGuest(this.guests[i]._id)
+    const guest = this.guests[i];
+    if (confirm(`Are You sure you would like to delete ${guest.firstName.charAt(0).toUpperCase() + guest.firstName.slice(1)} ${guest.lastName.charAt(0).toUpperCase() + guest.lastName.slice(1)}`)) {
+    this.guestService.deleteGuest(guest._id)
+      .subscribe(data => {
+        console.log(data);
+      });
+
+    this.guests.splice(i, 1);
+    }
+  }
+
+  onSendInvitationClick(i) {
+    this.guests[i].sendInvitation === true ? this.guests[i].sendInvitation = false : this.guests[i].sendInvitation = true;
+
+  }
+
+  onRsvpClick(i) {
+    this.guests[i].rsvp === true ? this.guests[i].rsvp = false : this.guests[i].rsvp = true;
+
+  }
+
+  onSaveClick(i) {
+    const guest = this.guests[i];
+    this.guestService.updateGuest(guest)
       .subscribe(data => {
         console.log(data);
       });
