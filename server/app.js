@@ -106,7 +106,7 @@ app.use('/api', controllers);
 
 // index route
 app.use('/', (req, res, next) => {
-    res.send('Please use /api/<desired route>');
+    res.send('Please use /api/desiredRoute');
 });
 
 // catch 404 and forward to error handler

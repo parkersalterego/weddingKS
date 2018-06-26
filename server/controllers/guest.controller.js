@@ -7,7 +7,7 @@ class GuestController {
             .get(this.getAllGuests);
         router.route('/guests/add')
             .post(this.addGuest);
-        router.route('/guests/delete/:_id')
+        router.route('/guests/:_id')
             .delete(this.softDeleteGuest);
     }
 
@@ -40,9 +40,8 @@ class GuestController {
 
     async softDeleteGuest(req, res, next) {
         try {
-            console.log(req.params._id);
-            const softDelete = await Guest.findOneAndUpdate(req.params._id, {'is_deleted' : true}, {'new' : true});
-            res.status(200).json(softDelete);
+            const softDeletedGuest = await Guest.findOneAndUpdate({'_id' : req.params._id, 'is_deleted' : false}, {'is_deleted' : true}, {'new' : true});
+            res.status(200).json(softDeletedGuest);
         } catch(err) {
             next(err);
         }
