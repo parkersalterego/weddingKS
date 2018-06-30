@@ -9,6 +9,7 @@ import { RsvpComponent } from '../components/rsvp/rsvp.component';
 import { DetailsComponent } from '../components/details/details.component';
 import { GalleryComponent } from '../components/gallery/gallery.component';
 import { AdminComponent } from '../components/admin/admin.component';
+import { HelpComponent } from '../components/help/help.component';
 
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
@@ -35,6 +36,10 @@ const appRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'help',
+    component: HelpComponent
   },
   {
     path: 'details',

@@ -4,22 +4,23 @@ a {
 }
 
 .footer {
-  height: 5rem;
+  height: 2.5rem;
   width: 100%;
-  background-color: #000;
+  margin-top: -2.5rem;
 }
 
 .copy-container {
-  height: 100%;
+  height: 2.5rem;
   width: 20rem;
   float: right;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  display: grid;
 }
 
 .copy {
-  color: #fff;
+  align-self: center;
+  justify-self: flex-end;
+  color: #333;
   margin-right: .5rem;
   font-size: 1.5rem;
 }
+

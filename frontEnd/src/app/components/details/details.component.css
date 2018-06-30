@@ -1,20 +1,23 @@
 .details-container {
-  min-height: calc(100vh - 50px);
+  min-height: 100vh;
   background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
-  background-size: 20rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
 }
 
-.google-maps {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0;
-  overflow: hidden;
+.title {
+  font-family: 'Stalemate', cursive;
+  font-size: 5rem;
+  margin-bottom: 2rem;
 }
 
-.google-maps i-frame {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
+.coming-soon {
+  font-family: 'Lato', sans-serif;
+  font-family: 3rem;
+  letter-spacing: 1rem;
 }

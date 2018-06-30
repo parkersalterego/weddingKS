@@ -4,11 +4,12 @@ a {
 }
 
 .home-container {
-  min-height: calc(100vh - 50px);
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 30rem minmax(30rem, 1fr);
   background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
-  background-size: 20rem;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .header {

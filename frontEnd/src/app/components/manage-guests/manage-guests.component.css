@@ -101,7 +101,8 @@
   transform: translateY(.2rem);
 }
 
-.fa-check:hover {
+.fa-check:hover,
+.fa-save:hover {
   color: lightgreen;
 }
 
