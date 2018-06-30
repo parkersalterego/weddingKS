@@ -19,6 +19,7 @@ import { AddGuestComponent } from './components/add-guest/add-guest.component';
 import { ManageGuestsComponent } from './components/manage-guests/manage-guests.component';
 import { AddPhotosComponent } from './components/add-photos/add-photos.component';
 import { GuestCountComponent } from './components/guest-count/guest-count.component';
+import { HelpComponent } from './components/help/help.component';
 
 import { JwtHelper} from 'angular2-jwt';
 
@@ -26,6 +27,8 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AuthService } from './services/auth.service';
 import { InvitationService } from './services/invitation.service';
 import { GuestService } from './services/guest.service';
+import { HelpService } from './services/help.service';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { GuestService } from './services/guest.service';
     ManageGuestsComponent,
     AddPhotosComponent,
     GuestCountComponent,
+    HelpComponent,
   ],
   entryComponents: [
     AddGuestComponent,
@@ -60,6 +64,7 @@ import { GuestService } from './services/guest.service';
     AuthService,
     InvitationService,
     GuestService,
+    HelpService,
     CookieService,
     JwtHelper
   ],

@@ -1,0 +1,15 @@
+<div class="help-container">
+  <form (submit)="onFormSubmit(f)" class="help-form" #f="ngForm">
+      <div class="form-header">
+        <h1 class="form-header-text">Help</h1>
+        <p class="form-header-description">Please fill out the form below and you will be contacted via email</p>
+      </div>
+    <label for="name">Name</label>
+    <input class="input" type="text" name="name" ngModel>
+    <label for="email">Email</label>
+    <input class="input" type="email" name="email" ngModel>
+    <label for="comments">Comments and Concerns</label>
+    <textarea class="comments" name="comments" cols="30" rows="10" ngModel></textarea>
+    <input class="btn" type="submit" value="Submit">
+  </form>
+</div>

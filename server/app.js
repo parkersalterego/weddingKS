@@ -19,7 +19,8 @@ const User = require('./models/user.model');
 
 // insecure Routes
 const insecureRoutes = [
-    '/',
+    '/api',
+    '/api/help',
     '/api/users/login',
     '/api/users/register'
  ]
@@ -50,11 +51,14 @@ app.use(cookieParser());
 
 // CORS Middleware
 app.use((req, res, next) => {
+    // res.header('Access-Control-Allow-Origin', 'https://cablechanwedding.win');
+    // res.header('Access-Control-Allow-Origin', 'https://www.cablechanwedding.win');
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     next();
 });
+
 
 // JWT AUTH
 app.use(jwt({secret: process.env.JWT_SECRET})
@@ -103,11 +107,6 @@ mongoose.connection.on('error', (err, next) => {
 
 // set route-prefix
 app.use('/api', controllers);
-
-// index route
-app.use('/', (req, res, next) => {
-    res.send('Please use /api/desiredRoute');
-});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -16,12 +16,12 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    // if (this.authService.user === undefined || this.authService.user === null) {
-    //   return false;
-    // } else {
-    //   return this.authService.user.role === 'admin' ? true : false;
-    // }
+    if (this.authService.user === undefined || this.authService.user === null) {
+      return false;
+    } else {
+      return this.authService.user.role === 'admin' ? true : false;
+    }
 
-    return true;
+    // return true;
   }
 }

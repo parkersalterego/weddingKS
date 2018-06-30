@@ -22,7 +22,6 @@ export class GuestService {
   ) { }
 
   addGuest(guest) {
-    console.log(guest);
     const token = this.cookieService.get('authToken');
     const authToken = token.split('"')[1];
     const headers = new Headers();

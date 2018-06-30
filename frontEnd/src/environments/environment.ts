@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:8080/api',
+  // api: 'https://www.cablechanwedding.win/api',
+  api: 'http://localhost:8080/api'
 };
 
 /*
