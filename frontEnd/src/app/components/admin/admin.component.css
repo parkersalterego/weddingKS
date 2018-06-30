@@ -12,7 +12,7 @@
   display: grid;
   grid-column: 1/2;
   background-color: rgba(0, 0, 0, .5);
-  grid-template-rows: 11rem repeat(3, 12rem);
+  grid-template-rows: 11rem repeat(4, 12rem);
   grid-gap: 2rem;
 
 }
@@ -33,8 +33,12 @@
   grid-row: 3/4;
 }
 
-.add-photos {
+.rsvps {
   grid-row: 4/5;
+}
+
+.add-photos {
+  grid-row: 5/6;
 }
 
 .fas {

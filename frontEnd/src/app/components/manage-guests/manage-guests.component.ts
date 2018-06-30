@@ -19,7 +19,6 @@ export class ManageGuestsComponent implements OnInit {
       .subscribe(data => {
         data.forEach((guest) => {
           this.guests.push(guest);
-          console.log(guest);
         });
       });
   }
@@ -29,10 +28,10 @@ export class ManageGuestsComponent implements OnInit {
     if (confirm(`Are You sure you would like to delete ${guest.firstName.charAt(0).toUpperCase() + guest.firstName.slice(1)} ${guest.lastName.charAt(0).toUpperCase() + guest.lastName.slice(1)}`)) {
     this.guestService.deleteGuest(guest._id)
       .subscribe(data => {
-        console.log(data);
+        if (data) {
+          this.guests.splice(i, 1);
+        }
       });
-
-    this.guests.splice(i, 1);
     }
   }
 
@@ -50,7 +49,9 @@ export class ManageGuestsComponent implements OnInit {
     const guest = this.guests[i];
     this.guestService.updateGuest(guest)
       .subscribe(data => {
-        console.log(data);
+        if(data) {
+          console.log('Guest Saved');
+        }
       });
   }
 

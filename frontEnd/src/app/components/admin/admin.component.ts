@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit, Renderer2, ViewChild, ViewContaine
 import { AddGuestComponent } from '../add-guest/add-guest.component';
 import { ManageGuestsComponent } from '../manage-guests/manage-guests.component';
 import { AddPhotosComponent } from '../add-photos/add-photos.component';
+import { RsvpsComponent } from '../rsvps/rsvps.component';
 
 @Component({
   selector: 'app-admin',
@@ -37,8 +38,6 @@ export class AdminComponent implements OnInit, AfterContentInit {
       this.resolver.resolveComponentFactory(AddGuestComponent)
     );
 
-
-
   }
 
   onManageGuestsClick() {
@@ -57,6 +56,14 @@ export class AdminComponent implements OnInit, AfterContentInit {
       this.resolver.resolveComponentFactory(AddPhotosComponent)
     );
 
+  }
+
+  onRsvpsClick() {
+    this.selectedComponent.clear();
+
+    this.selectedComponent.createComponent(
+      this.resolver.resolveComponentFactory(RsvpsComponent)
+    );
   }
 
 }

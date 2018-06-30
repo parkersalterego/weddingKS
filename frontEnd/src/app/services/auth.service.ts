@@ -49,6 +49,17 @@ export class AuthService {
       .pipe(map(res => res.json()));
   }
 
+  getUserByToken() {
+    const headers = new Headers();
+    const token = this.cookieService.get('authToken');
+    const authToken = token.split('"')[1];
+    const id = this.jwtHelper.decodeToken(authToken).id;
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + authToken);
+    return this.http.get(`${environment.api}/users/${id}`, {headers: headers})
+      .pipe(map(res => res.json()));
+  }
+
   tokenCheck() {
 
     if (this.user === undefined || this.user === null) {

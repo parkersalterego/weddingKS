@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service'; 
+import { AuthService } from '../../services/auth.service';
+import { RsvpService } from '../../services/rsvp.service';
 
 @Component({
   selector: 'app-rsvp',
@@ -10,11 +12,33 @@ import { AuthService } from '../../services/auth.service';
 export class RsvpComponent implements OnInit {
 
   constructor(
-              private authService: AuthService
+              private authService: AuthService,
+              private rsvpService: RsvpService,
+              private router: Router
   ) { }
 
   ngOnInit() {
-    console.log(this.authService.user);
+  }
+
+  onFormSubmit(form, rsvpService) {
+    const value = form.value;
+
+    this.authService.getUserByToken()
+      .subscribe(data => {
+
+        const rsvp = {
+          attending: value.attending === '' ? false : true,
+          comments: value.comments,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          userId: data._id
+        };
+
+        this.rsvpService.submitRsvp(rsvp)
+          .subscribe(newRsvp => {
+            console.log(newRsvp);
+          });
+      });
   }
 
 }
