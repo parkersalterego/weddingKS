@@ -10,6 +10,11 @@
         <span class="tooltip">Manage Guests</span>
       </i>
     </div>
+    <div class="menu-item rsvps" (click)="onRsvpsClick()">
+      <i class="fas fa-address-card">
+        <span class="tooltip">R.S.V.P.'s</span>
+      </i>
+    </div>
     <div class="menu-item add-photos" (click)="onAddPhotoClick()">
       <i class="fas fa-camera">
         <span class="tooltip">Add Photos</span>
@@ -27,6 +32,10 @@
 
         <i class="fas fa-users" (click)="onManageGuestsClick()">
           <span class="tooltip">Manage Guests</span>
+        </i>
+
+        <i class="fas fa-address-card" (click)="onRsvpsClick()">
+          <span class="tooltip">R.S.V.P.'s</span>
         </i>
 
         <i class="fas fa-camera" (click)="onAddPhotoClick()">

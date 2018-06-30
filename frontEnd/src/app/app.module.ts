@@ -23,11 +23,13 @@ import { HelpComponent } from './components/help/help.component';
 
 import { JwtHelper} from 'angular2-jwt';
 
+import { RsvpService } from './services/rsvp.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AuthService } from './services/auth.service';
 import { InvitationService } from './services/invitation.service';
 import { GuestService } from './services/guest.service';
 import { HelpService } from './services/help.service';
+import { RsvpsComponent } from './components/rsvps/rsvps.component';
 
 
 @NgModule({
@@ -48,11 +50,13 @@ import { HelpService } from './services/help.service';
     AddPhotosComponent,
     GuestCountComponent,
     HelpComponent,
+    RsvpsComponent,
   ],
   entryComponents: [
     AddGuestComponent,
     ManageGuestsComponent,
-    AddPhotosComponent
+    AddPhotosComponent,
+    RsvpsComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,7 @@ import { HelpService } from './services/help.service';
     AuthService,
     InvitationService,
     GuestService,
+    RsvpService,
     HelpService,
     CookieService,
     JwtHelper
