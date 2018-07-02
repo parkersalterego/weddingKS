@@ -51,9 +51,10 @@ app.use(cookieParser());
 
 // CORS Middleware
 app.use((req, res, next) => {
-    // res.header('Access-Control-Allow-Origin', 'https://cablechanwedding.win');
-    // res.header('Access-Control-Allow-Origin', 'https://www.cablechanwedding.win');
-    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    ['https://cablechanwedding.win', 'https://www.cablechanwedding.win'].map((domain) => {
+        res.setHeader('Access-Control-Allow-Origin', domain);
+    });
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     next();
