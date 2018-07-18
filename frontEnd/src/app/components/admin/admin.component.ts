@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit, Renderer2, ViewChild, ViewContaine
 import { AddGuestComponent } from '../add-guest/add-guest.component';
 import { ManageGuestsComponent } from '../manage-guests/manage-guests.component';
 import { AddPhotosComponent } from '../add-photos/add-photos.component';
+import { HelpMessagesComponent } from '../help-messages/help-messages.component';
 import { RsvpsComponent } from '../rsvps/rsvps.component';
 
 @Component({
@@ -63,6 +64,14 @@ export class AdminComponent implements OnInit, AfterContentInit {
 
     this.selectedComponent.createComponent(
       this.resolver.resolveComponentFactory(RsvpsComponent)
+    );
+  }
+
+  onHelpClick() {
+    this.selectedComponent.clear();
+
+    this.selectedComponent.createComponent(
+      this.resolver.resolveComponentFactory(HelpMessagesComponent)
     );
   }
 

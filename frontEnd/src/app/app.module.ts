@@ -30,6 +30,7 @@ import { InvitationService } from './services/invitation.service';
 import { GuestService } from './services/guest.service';
 import { HelpService } from './services/help.service';
 import { RsvpsComponent } from './components/rsvps/rsvps.component';
+import { HelpMessagesComponent } from './components/help-messages/help-messages.component';
 
 
 @NgModule({
@@ -51,12 +52,14 @@ import { RsvpsComponent } from './components/rsvps/rsvps.component';
     GuestCountComponent,
     HelpComponent,
     RsvpsComponent,
+    HelpMessagesComponent,
   ],
   entryComponents: [
     AddGuestComponent,
     ManageGuestsComponent,
     AddPhotosComponent,
-    RsvpsComponent
+    RsvpsComponent,
+    HelpMessagesComponent
   ],
   imports: [
     BrowserModule,

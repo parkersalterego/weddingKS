@@ -1,0 +1,21 @@
+<div class="help-container">
+  <div class="help-header">
+    <h2>Help Messages</h2>
+  </div>
+  <div class="help-list">
+    <h2 class="help-list__header name">Name</h2>
+    <h2 class="help-list__header attending">Email</h2>
+    <h2 class="help-list__header comments">Comments / Concerns</h2>
+
+    <div class="help-list-items">
+
+      <div class="help-message" *ngFor="let help of helpMessages">
+        <p class="name list-item">{{help.name}}</p>
+        <p class="attending list-item">{{help.email}}</p>
+        <p class="comments list-item">{{help.comments}}</p>
+      </div>
+
+    </div>
+    
+  </div>
+</div>

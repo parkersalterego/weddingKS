@@ -31,4 +31,13 @@ export class RsvpService {
     return this.http.post(`${environment.api}/rsvp`, rsvp, {headers: headers})
       .pipe(map(res => res.json()));
   }
+
+  getRsvps() {
+    const authToken = this.cookieService.get('authToken').split('"')[1];
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + authToken);
+    return this.http.get(`${environment.api}/rsvp`, {headers: headers})
+      .pipe(map(res => res.json()));
+  }
 }
