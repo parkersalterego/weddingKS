@@ -29,4 +29,14 @@ export class HelpService {
       .pipe(map(res => res.json()));
   }
 
+  getHelpRequests() {
+    const headers = new Headers();
+    const token = this.cookieService.get('authToken');
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + token);
+    return this.http.get(`${environment.api}/help`, {headers: headers})
+      .pipe(map(res => res.json()));
+  }
+
 }

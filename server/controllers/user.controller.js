@@ -85,7 +85,7 @@ class UserController {
             //         await UserController.updateSecurityStamp(user)
             //             res.status(200).json(user);
             const checkEmail = await User.findOne({'email' : req.body.email, 'is_deleted' : false})
-            const checkGuest = await Guest.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName, 'is_deleted' : false});
+            const checkGuest = await Guest.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName});
 
             if (checkGuest === null || checkGuest === undefined) {
                 res.status(403).json({'Error' : 'It apears you are not on the guest list'});

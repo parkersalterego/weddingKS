@@ -20,6 +20,11 @@
         <span class="tooltip">Add Photos</span>
       </i>
     </div>
+    <div class="menu-item help" (click)="onHelpClick()">
+      <i class="fas fa-question">
+        <span class="tooltip">Help Messages</span>
+      </i>
+    </div>
   </div>
 
   <div class="main-container" #componentContainer>
@@ -40,6 +45,10 @@
 
         <i class="fas fa-camera" (click)="onAddPhotoClick()">
           <span class="tooltip">Add Photos</span>
+        </i>
+
+        <i class="fas fa-question" (click)="onHelpClick()">
+          <span class="tooltip">Help Messages</span>
         </i>
 
       </div>

@@ -36,7 +36,9 @@ export class RsvpComponent implements OnInit {
 
         this.rsvpService.submitRsvp(rsvp)
           .subscribe(newRsvp => {
-            console.log(newRsvp);
+            if (newRsvp !== null && newRsvp !== undefined) {
+              this.router.navigate(['/']);
+            }
           });
       });
   }
