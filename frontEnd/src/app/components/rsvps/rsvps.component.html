@@ -2,19 +2,28 @@
   <div class="rsvps-header">
     <h2>R.S.V.P.'s</h2>
   </div>
+  <div class="rsvp-totals">
+    <p class="rsvp-totals__count grand-total">Total Guests: {{totalGuests}}</p>
+    <p class="rsvp-totals__count">Under Six: {{totalUnderSix}}</p>
+  </div>
   <div class="rsvps-list">
     <h2 class="rsvps-list__header name">Name</h2>
     <h2 class="rsvps-list__header attending">Attending</h2>
-    <h2 class="rsvps-list__header comments">Comments / Concerns</h2>
+    <h2 class="rsvps-list__header total">Total</h2>
+    <h2 class="rsvps-list__header under-six">-6</h2>
 
     <div class="rsvps-list-items">
 
       <div class="rsvp" *ngFor="let rsvp of rsvps">
-        <p class="name list-item">{{rsvp.firstName}} {{rsvps.lastName}}</p>
+        <p class="name list-item">
+          {{rsvp.firstName.charAt(0).toUpperCase() + rsvp.firstName.slice(1, rsvp.firstName.length)}}
+          {{rsvp.lastName.charAt(0).toUpperCase() + rsvp.lastName.slice(1, rsvp.lastName.length)}}</p>
         <p class="attending list-item">
           <i class="fas fa-check" *ngIf="rsvp.attending"></i>
           <i class="fas fa-times" *ngIf="!rsvp.attending"></i>
         </p>
+        <p class="total-attending list-item">{{rsvp.totalAttending}}</p>
+        <p class="under-six list-item">{{rsvp.underSixAttending}}</p>
         <p class="comments list-item">{{rsvp.comments}}</p>
       </div>
 

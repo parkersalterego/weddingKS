@@ -16,6 +16,14 @@ const RsvpSchema = new mongoose.Schema({
     lastName: {
         type: String,
         required: true
+    },
+    totalAttending: {
+        type: Number,
+        required: true,
+    },
+    underSixAttending: {
+        type: Number,
+        required: true,
     }
 });
 
