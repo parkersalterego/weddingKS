@@ -9,6 +9,8 @@ import { RsvpService } from '../../services/rsvp.service';
 })
 export class RsvpsComponent implements OnInit {
   rsvps;
+  totalGuests = 0;
+  totalUnderSix = 0;
 
   constructor(
               private rsvpService: RsvpService
@@ -19,7 +21,11 @@ export class RsvpsComponent implements OnInit {
     .subscribe(data => {
       if (data) {
         this.rsvps = data;
-        console.log(this.rsvps);
+
+        data.forEach((rsvp) => {
+          this.totalGuests = this.totalGuests + rsvp.totalAttending;
+          this.totalUnderSix = this.totalUnderSix + rsvp.underSixAttending;
+        });
       }
     });
   }

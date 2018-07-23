@@ -20,7 +20,7 @@ export class RsvpComponent implements OnInit {
   ngOnInit() {
   }
 
-  onFormSubmit(form, rsvpService) {
+  onFormSubmit(form) {
     const value = form.value;
 
     this.authService.getUserByToken()
@@ -31,6 +31,8 @@ export class RsvpComponent implements OnInit {
           comments: value.comments,
           firstName: data.firstName,
           lastName: data.lastName,
+          totalAttending: value.totalGuests,
+          underSixAttending: value.under,
           userId: data._id
         };
 
