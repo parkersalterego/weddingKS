@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,11 +14,13 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('flashMessage') flashMessage;
+  @ViewChild('flashMessageContent') flashMessageContent;
 
   constructor(
               private authService: AuthService,
               private jwtHelper: JwtHelper,
-              private cookieService: CookieService ,
+              private cookieService: CookieService,
               private router: Router
   ) { }
 
@@ -31,14 +33,31 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         if (data !== undefined && data !== null) {
           this.cookieService.put('authToken', JSON.stringify(data.accessToken));
-          this.authService.getUserById(this.jwtHelper.decodeToken(data.accessToken).id)
+          this.authService.getUserById()
             .subscribe(user => {
               if (user !== undefined && user !== null) {
                 this.authService.user = user;
-                this.router.navigate(['/']);
+                this.flashMessage.nativeElement.classList.add('alert-success');
+                this.flashMessageContent.nativeElement.innerHTML = 'Logged In Successfully';
+                setTimeout(() => {
+                  this.flashMessage.nativeElement.classList.remove('alert-success');
+                  this.flashMessageContent.nativeElement.innerHTML = '';
+                }, 3000);
+                setTimeout(() => {
+                  this.router.navigate(['/']);
+                }, 3000);
               }
             });
         }
+      }, err => {
+        this.flashMessage.nativeElement.classList.add('alert-danger');
+        this.flashMessageContent.nativeElement.innerHTML = err._body.split('"')[1];
+        this.flashMessageContent.nativeElement.style.fontSize = '1.5rem';
+        setTimeout(() => {
+          this.flashMessage.nativeElement.classList.remove('alert-danger');
+          this.flashMessageContent.nativeElement.innerHTML = '';
+          this.flashMessageContent.nativeElement.style.fontSize = '2rem';
+        }, 3000);
       });
   }
 

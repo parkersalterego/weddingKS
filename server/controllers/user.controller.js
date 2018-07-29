@@ -25,6 +25,8 @@ class UserController {
             .delete(this.softDeleteUser);
         router.route('/users/restore/:_id')
             .delete(this.restoreUser);
+        router.route('/users/reset-password')
+            .post(this.resetPassword);
     }
 
     async getAllUsers(req, res, next) {
@@ -88,7 +90,7 @@ class UserController {
             const checkGuest = await Guest.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName});
 
             if (checkGuest === null || checkGuest === undefined) {
-                res.status(403).json({'Error' : 'It apears you are not on the guest list'});
+                res.status(403).json('It apears you are not on the guest list');
             } else {
                 if (checkEmail !== null && checkEmail !== undefined) {
                     res.status(403).json('An account already exists with the provided email or username');
@@ -129,6 +131,29 @@ class UserController {
             res.status(200).json(restore);
         } catch(err) {
             next(err)
+        }
+    }
+
+    async resetPassword(req, res, next) {
+        try {
+            const user = await User.findOne({'email' : req.body.email, 'is_deleted' : false})
+
+            if (user === null || user === undefined) {
+                res.status(500).json('There is no user registered with the email ' + req.body.email);
+            } else {
+                const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+                await UserController.updateSecurityStamp(user)
+                const updateUser = await User.update({'_id' : user._id}, {$set: {'password' : hash}});
+
+                if (updateUser === null || updateUser === undefined) {
+                    res.status(500).json('Unable to update password by email please get in touch with support through the help section');
+                } else {
+                    const updatedUser = await User.findById(user._id);
+                    res.status(200).json(updatedUser);
+                }
+            }
+        } catch(err) {
+            next(err);
         }
     }
 

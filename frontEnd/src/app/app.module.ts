@@ -31,6 +31,7 @@ import { GuestService } from './services/guest.service';
 import { HelpService } from './services/help.service';
 import { RsvpsComponent } from './components/rsvps/rsvps.component';
 import { HelpMessagesComponent } from './components/help-messages/help-messages.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { HelpMessagesComponent } from './components/help-messages/help-messages.
     HelpComponent,
     RsvpsComponent,
     HelpMessagesComponent,
+    PasswordResetComponent,
   ],
   entryComponents: [
     AddGuestComponent,
@@ -65,7 +67,7 @@ import { HelpMessagesComponent } from './components/help-messages/help-messages.
     BrowserModule,
     RoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [
     AuthService,

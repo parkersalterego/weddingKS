@@ -11,6 +11,8 @@ class GuestController {
             .post(this.updateGuest);
         router.route('/guests/:_id')
             .delete(this.softDeleteGuest);
+        router.route('/guests/find-by-name')
+            .post(this.findGuestByName);
     }
 
     async addGuest(req, res, next) {
@@ -57,6 +59,15 @@ class GuestController {
             }else {
                 res.status(403).json({'Error' : 'Unable to update guest'});
             }
+        } catch(err) {
+            next(err);
+        }
+    }
+
+    async findGuestByName(req, res, next) {
+        try {
+            const guest = await Guest.findOne(req.body);
+            res.status(200).json(guest);
         } catch(err) {
             next(err);
         }

@@ -62,4 +62,13 @@ export class GuestService {
       .pipe(map(res => res.json()));
   }
 
+  getGuestByName(guest) {
+    const token = this.cookieService.get('authToken');
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', 'Bearer ' + token.split('"')[1]);
+    return this.http.post(`${environment.api}/guests/find-by-name`, guest, {headers: headers})
+      .pipe(map(res => res.json()));
+  }
+
 }

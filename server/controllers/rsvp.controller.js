@@ -7,8 +7,10 @@ class RsvpController {
     constructor(router) {
         router.route('/rsvp')
             .post(this.submitRsvp)
-            .get(this.getAll);
-
+            .get(this.getAll)
+            .put(this.editRsvp);
+        router.route('/rsvp/check')
+            .post(this.checkRsvp);
     }
 
 
@@ -23,7 +25,7 @@ class RsvpController {
 
                 res.status(200).json(rsvp);
             } else {
-                res.status(403).json({'Error' : 'Rsvp already exists please choose edit rsvp'});
+                res.status(500).json('Unable to send rsvp');
             }
         } catch(err) {
             next(err);
@@ -32,12 +34,36 @@ class RsvpController {
 
     async getAll(req, res, next) {
         try {
-            const rsvps = await Rsvp.find();
-            if (rsvps === null || rsvps === undefined) {
-                res.status(403).json({'Error' : 'Unable to get rsvps'});
+           const rsvps = await Rsvp.find();
+
+           res.status(200).json(rsvps);
+        } catch(err) {
+            next(err);
+        }
+    }
+
+    async checkRsvp(req, res, next) {
+        try {
+            const rsvp = await Rsvp.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName})
+            if (!rsvp) {
+                res.status(200).json(false);
             } else {
-                res.status(200).json(rsvps);
+                const rsvp = await Rsvp.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName})
+                res.status(200).json(rsvp);
             }
+        } catch (err) {
+            next(err);
+        }
+
+    }
+
+    async editRsvp(req, res, next) {
+        try {
+            const rsvp = await Rsvp.update({'firstName' : req.body.firstName, 'lastName' : req.body.lastName}, req.body);
+            const updatedRsvp = await Rsvp.findOne({'firstName' : req.body.firstName, 'lastName' : req.body.lastName})
+            res.status(200).json(updatedRsvp);
+
+
         } catch(err) {
             next(err);
         }

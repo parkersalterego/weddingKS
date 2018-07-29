@@ -22,7 +22,8 @@ const insecureRoutes = [
     '/api',
     '/api/help',
     '/api/users/login',
-    '/api/users/register'
+    '/api/users/register',
+    '/api/users/reset-password'
  ]
 
 // Environment

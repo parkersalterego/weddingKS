@@ -2,6 +2,10 @@
     <form (ngSubmit)="onRegisterSubmit(f)" class="register-form" #f="ngForm">
   
       <h1 class="register-header">Register</h1>
+
+      <div class="flash-message" #flashMessage>
+        <p class="flash-message-content" #flashMessageContent></p>
+      </div>
   
       <div class="first-name form-group">
         <label for="firstName">First Name</label>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild('flashMessage') flashMessage;
+  @ViewChild('flashMessageContent') flashMessageContent;
 
   constructor(
               private authService: AuthService,
@@ -30,8 +32,24 @@ export class RegisterComponent implements OnInit {
     })
       .subscribe(data => {
         if (data) {
-          this.router.navigate(['/login']);
+          this.flashMessage.nativeElement.classList.add('alert-success');
+            this.flashMessageContent.nativeElement.innerHTML = 'Account Created Successfully';
+            setTimeout(() => {
+              this.flashMessage.nativeElement.classList.remove('alert-success');
+              this.flashMessageContent.nativeElement.innerHTML = '';
+            }, 3000);
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000);
         }
+      }, err => {
+        console.log(err._body);
+        this.flashMessage.nativeElement.classList.add('alert-danger');
+            this.flashMessageContent.nativeElement.innerHTML = err._body;
+            setTimeout(() => {
+              this.flashMessage.nativeElement.classList.remove('alert-danger');
+              this.flashMessageContent.nativeElement.innerHTML = '';
+            }, 3000);
       });
   }
 

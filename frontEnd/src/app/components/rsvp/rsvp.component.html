@@ -4,30 +4,38 @@
   </div>
   <form class="form-container" (submit)="onFormSubmit(f)" #f="ngForm">
 
+    <div class="flash-message" #flashMessage>
+      <p class="flash-message-content" #flashMessageContent></p>
+    </div>
+
     <div class="confirm-decline">
       <div class="switch-text">
         <p class="cd-text">Will Your party be attending?</p>
-        <label class="switch">
-          <input type="checkbox" name="attending" ngModel>
-          <span class="slider round"></span>
-        </label>
+        <div class="switch-info">
+          <label class="switch">
+              <input (click)="updateAttendingStatus()" type="checkbox" name="attending" ngModel #checkBox>
+              <span class="slider round"></span>
+            </label>
+            <p class="attending-status-text" #attendingText>No</p>
+        </div>
       </div>
+      
     </div>
 
     <div class="attending">
       <div class="attending-container">
         <p class="attending__text">Total Number of guests attending</p>
-        <input class="attending__input" type="number" name="totalGuests" placeholder="0" ngModel>
+        <input class="attending__input" type="number" name="totalGuests" placeholder="0" ngModel #attending>
       </div>
       <div class="attending-container">
         <p class="attending__text">Number of guests under 6</p>
-        <input class="attending__input" type="number" name="under" placeholder="0" ngModel>
+        <input class="attending__input" type="number" name="under" placeholder="0" ngModel #underSix>
       </div>
     </div>
 
     <div class="comments">
       <label class="comments-label" for="comments">Comments and Concerns</label>
-      <textarea class="comments-textarea" name="comments" cols="30" rows="10" ngModel></textarea>
+      <textarea class="comments-textarea" name="comments" cols="30" rows="10" ngModel #comments></textarea>
     </div>
 
     <div class="submit-container">
