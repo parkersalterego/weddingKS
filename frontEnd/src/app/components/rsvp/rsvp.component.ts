@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 import { RsvpService } from '../../services/rsvp.service';
+import { GuestService } from '../../services/guest.service';
 
 @Component({
   selector: 'app-rsvp',
@@ -19,116 +20,125 @@ export class RsvpComponent implements OnInit {
   @ViewChild('comments') comments;
 
   edit: Boolean;
-  user;
   guest;
+  rsvp;
   totalAttending: Number;
   underSixAttending: Number;
 
   constructor(
               private authService: AuthService,
               private rsvpService: RsvpService,
+              private guestService: GuestService,
               private router: Router
   ) { }
 
   ngOnInit() {
-    console.log(this.attending);
-    this.user = this.authService.user;
-    this.rsvpService.checkRsvp()
-      .subscribe(data => {
-        console.log(data);
-        if (data === false) {
-          this.edit = false;
-        } else {
-          this.edit = true;
+    this.getGuest();
+  }
 
-          data.attending
-          ? this.attendingText.nativeElement.innerHTML = 'Yes'
-          : this.attendingText.nativeElement.innerHTML = 'No';
-          this.checkBox.nativeElement.checked = data.attending;
-          this.comments.nativeElement.value = data.comments;
-          this.attending.nativeElement.value = data.totalAttending;
-          this.underSix.nativeElement.value = data.underSixAttending;
-        }
+  getGuest() {
+    this.guestService.getGuestByName({
+      'firstName' : this.authService.user.firstName,
+      'lastName' : this.authService.user.lastName
+    }).subscribe(data => {
+      console.log(data);
+      this.guest = data;
+      this.guest.rsvp ? this.edit = true : this.edit = false;
+      console.log(this.edit);
+      this.edit === false ? this.comments.nativeElement.value = '' :  this.getRsvp();
+    });
+
+  }
+
+  getRsvp() {
+    this.rsvpService.getRsvp()
+      .subscribe(data => {
+
+        this.setUpFormForEdit(data);
       });
   }
 
-  onFormSubmit(form) {
-    const value = form.value;
+  setUpFormForEdit(rsvp) {
+    rsvp.attending
+      ? this.attendingText.nativeElement.innerHTML = 'Yes'
+      : this.attendingText.nativeElement.innerHTML = 'No';
+    this.checkBox.nativeElement.checked = rsvp.attending;
+    this.comments.nativeElement.value = rsvp.comments;
+    this.attending.nativeElement.value = rsvp.totalAttending;
+    this.underSix.nativeElement.value = rsvp.underSixAttending;
+  }
 
-    if (this.checkBox.nativeElement.checked) {
-      this.totalAttending = value.totalGuests === '' ? 0 : value.totalGuests;
-      this.underSixAttending = value.under === '' ? 0 : value.under;
-    } else {
-      this.totalAttending = 0;
-      this.underSixAttending = 0;
-    }
+  onFormSubmit(f) {
 
+    const value = f.value;
+
+    this.checkBox.nativeElement.checked
+      ? (this.totalAttending = this.attending.nativeElement.value === '' ? 0 : this.attending.nativeElement.value,
+        this.underSixAttending = this.underSix.nativeElement.value === '' ? 0 : this.underSix.nativeElement.value)
+      : (this.totalAttending = 0,
+        this.underSixAttending = 0);
 
     const rsvp = {
-      attending: value.attending === '' ? false : true,
-      comments: value.comments,
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
+      attending: this.checkBox.nativeElement.checked === '' ? false : true,
+      comments: this.comments.nativeElement.value,
+      firstName: this. authService.user.firstName,
+      lastName: this.authService.user.lastName,
       totalAttending: this.totalAttending,
       underSixAttending: this.underSixAttending,
-      userId: this.user._id
+      userId: this.authService.user._id
     };
 
-
-    if (this.edit) {
-      this.rsvpService.editRsvp(rsvp)
-        .subscribe(data => {
-          this.flashMessage.nativeElement.classList.add('alert-success');
-          this.flashMessageContent.nativeElement.innerHTML = 'Rsvp Edited';
-          setTimeout(() => {
-            this.flashMessage.nativeElement.classList.remove('alert-success');
-            this.flashMessageContent.nativeElement.innerHTML = '';
-          }, 3000);
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 3000);
-        }, err => {
-          this.flashMessage.nativeElement.classList.add('alert-danger');
-          this.flashMessageContent.nativeElement.innerHTML = err._body.split('"')[1];
-          this.flashMessageContent.nativeElement.style.fontSize = '1.5rem';
-          setTimeout(() => {
-            this.flashMessage.nativeElement.classList.remove('alert-danger');
-            this.flashMessageContent.nativeElement.innerHTML = '';
-            this.flashMessageContent.nativeElement.style.fontSize = '2rem';
-          }, 3000);
-        });
+    if (rsvp.totalAttending < 0 || rsvp.underSixAttending < 0) {
+      this.flashMessage.nativeElement.classList.add('alert-danger');
+      this.flashMessageContent.nativeElement.innerHTML = 'Attending counts may not be negative numbers';
+      this.flashMessageContent.nativeElement.style.fontSize = '1.25rem';
+      setTimeout(() => {
+        this.flashMessage.nativeElement.classList.remove('alert-danger');
+        this.flashMessageContent.nativeElement.innerHTML = '';
+        this.flashMessageContent.nativeElement.style.fontSize = '2rem';
+      }, 3000);
+    } else if (rsvp.attending && rsvp.totalAttending <= 0) {
+      this.flashMessage.nativeElement.classList.add('alert-danger');
+      this.flashMessageContent.nativeElement.innerHTML = 'Please fill out the attending counts below';
+      this.flashMessageContent.nativeElement.style.fontSize = '1.25rem';
+      setTimeout(() => {
+        this.flashMessage.nativeElement.classList.remove('alert-danger');
+        this.flashMessageContent.nativeElement.innerHTML = '';
+        this.flashMessageContent.nativeElement.style.fontSize = '2rem';
+      }, 3000);
     } else {
-      this.rsvpService.submitRsvp(rsvp)
-        .subscribe(data => {
-          this.flashMessage.nativeElement.classList.add('alert-success');
-          this.flashMessageContent.nativeElement.innerHTML = 'Rsvp Submmitted';
-          setTimeout(() => {
-            this.flashMessage.nativeElement.classList.remove('alert-success');
-            this.flashMessageContent.nativeElement.innerHTML = '';
-          }, 3000);
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 3000);
-        }, err => {
-          this.flashMessage.nativeElement.classList.add('alert-danger');
-          this.flashMessageContent.nativeElement.innerHTML = err._body.split('"')[1];
-          this.flashMessageContent.nativeElement.style.fontSize = '1.5rem';
-          setTimeout(() => {
-            this.flashMessage.nativeElement.classList.remove('alert-danger');
-            this.flashMessageContent.nativeElement.innerHTML = '';
-            this.flashMessageContent.nativeElement.style.fontSize = '2rem';
-          }, 3000);
-        });
+      this.edit === true ? this.editRsvpSubmit(rsvp) : this.firstSubmit(rsvp);
     }
   }
 
-  submitRsvp(rsvp) {
-    console.log(rsvp);
-    this.rsvpService.submitRsvp(rsvp);
+  editRsvpSubmit(rsvp) {
+    this.rsvpService.editRsvp(rsvp)
+      .subscribe(data => {
+        this.flashMessage.nativeElement.classList.add('alert-success');
+        this.flashMessageContent.nativeElement.innerHTML = 'Rsvp Edited';
+        setTimeout(() => {
+          this.flashMessage.nativeElement.classList.remove('alert-success');
+          this.flashMessageContent.nativeElement.innerHTML = '';
+        }, 3000);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 3000);
+      });
   }
 
-  editRsvp(rsvp) {
-    console.log('edit');
+  firstSubmit(rsvp) {
+    this.rsvpService.submitRsvp(rsvp)
+      .subscribe(data => {
+        this.flashMessage.nativeElement.classList.add('alert-success');
+        this.flashMessageContent.nativeElement.innerHTML = 'Rsvp Submitted';
+        setTimeout(() => {
+          this.flashMessage.nativeElement.classList.remove('alert-success');
+          this.flashMessageContent.nativeElement.innerHTML = '';
+        }, 3000);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 3000);
+      });
   }
 
   updateAttendingStatus() {

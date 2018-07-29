@@ -21,14 +21,9 @@ export class RsvpsComponent implements OnInit {
     .subscribe(data => {
       if (data) {
         this.rsvps = data;
-
         data.forEach((rsvp) => {
-          if (typeof(rsvp.totalGuests) === 'number' && typeof(rsvp.totalUnderSix) === 'number') {
-            this.totalGuests = this.totalGuests + rsvp.totalAttending;
-          this.totalUnderSix = this.totalUnderSix + rsvp.underSixAttending;
-          } else {
-            console.log(rsvp);
-          }
+          this.totalGuests += rsvp.totalAttending;
+          this.totalUnderSix += rsvp.underSixAttending;
         });
       }
     });

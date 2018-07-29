@@ -52,7 +52,7 @@ export class RsvpService {
       .pipe(map(res => res.json()));
   }
 
-  checkRsvp() {
+  getRsvp() {
     const authToken = this.cookieService.get('authToken').split('"')[1];
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
