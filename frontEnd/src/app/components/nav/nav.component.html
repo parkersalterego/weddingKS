@@ -8,7 +8,7 @@
     <ul class="nav-ul text-center">
       <li *ngIf="isAdmin()" class="nav-li" (click)="onListItemClick()" [routerLink]="['/admin']">Admin</li>
       <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/rsvp']">R.S.V.P.</li>
-      <a target="_blank" href="https://www.target.com/gift-registry/giftgiver?registryId=f3e802a170444520a8d229cea2850da0&type=WEDDING"><li class="nav-li" (click)="onListItemClick()" [routerLink]="['/registry']">Registry</li></a>
+      <a target="_blank" href="https://www.target.com/gift-registry/giftgiver?registryId=f3e802a170444520a8d229cea2850da0&type=WEDDING"><li class="nav-li" (click)="onListItemClick()">Registry</li></a>
       <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/details']">Details</li>
       <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/gallery']">Gallery</li>
       <li class="nav-li" (click)="onListItemClick()" [routerLink]="['/help']">Help</li>

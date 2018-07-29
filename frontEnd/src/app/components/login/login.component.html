@@ -2,6 +2,10 @@
   <form (ngSubmit)="onLoginSubmit(f)" class="login-form" #f="ngForm">
 
     <h1 class="login-header">Login</h1>
+
+    <div class="flash-message" #flashMessage>
+      <p class="flash-message-content" #flashMessageContent></p>
+    </div>
     
     <div class="last-name form-group">
       <label for="email">Email</label>
@@ -15,6 +19,9 @@
 
     <input class="login-btn" type="submit" value="Login">
 
-    <p>Don't have an account? <a routerLink="/register">register here.</a></p>
+    <p class="reset">Don't have an account? <a routerLink="/register">register here.</a></p>
+
+    <p class="register"><a routerLink="/password-reset">unable to log in?</a></p>
+
   </form>
 </div>

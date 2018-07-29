@@ -3,21 +3,45 @@
   background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 
 }
 
-.title {
-  font-family: 'Stalemate', cursive;
+.spacer {
+  height: 20rem;
+  width: 100vh;
+}
+
+.details-header {
+  text-align: center;
   font-size: 5rem;
-  margin-bottom: 2rem;
+  color: #f8f8ff;
+  font-family: 'Stalemate', cursive;
 }
 
-.coming-soon {
+.details {
+  display: grid;
+  grid-template-rows: 30rem;
+  grid-template-columns: 1fr 30rem 30rem 1fr;
+}
+
+.details__schedule {
+  grid-column: 2/4;
+  display: grid;
+  grid-template-rows: 5rem;
+  color: #f8f8ff;
+
+}
+
+.details__schedule--header {
+  justify-self: center;
+  align-self: center;
+  font-size: 1.8rem;
   font-family: 'Lato', sans-serif;
-  font-family: 3rem;
-  letter-spacing: 1rem;
+  font-weight: 400;
+}
+
+.details__schedule--item {
+  font-size: 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }

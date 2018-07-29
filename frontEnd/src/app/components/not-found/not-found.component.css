@@ -1,6 +1,6 @@
 .not-found-container {
   font-family: 'Stalemate', cursive;
-  height: calc(100vh - 50px);
+  height: 100vh;
   grid-template-rows: 200px 1fr 200px;
   display: grid;
   background: linear-gradient(to top, rgba(165, 242, 243, .4), rgba(37,124,163, .8)),   url('../../../assets/img/5086.jpg');

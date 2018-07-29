@@ -13,6 +13,7 @@ import { HelpComponent } from '../components/help/help.component';
 
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
+import { PasswordResetComponent } from '../components/password-reset/password-reset.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent
   },
   {
     path: 'rsvp',
