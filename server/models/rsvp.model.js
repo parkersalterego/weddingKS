@@ -7,7 +7,7 @@ const RsvpSchema = new mongoose.Schema({
     },
     comments : {
         type: String,
-        required: true
+        required: false
     },
     firstName: {
         type: String,

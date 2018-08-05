@@ -33,7 +33,7 @@ export class RsvpComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getGuest();
+    // this.getGuest();
   }
 
   getGuest() {
@@ -41,10 +41,8 @@ export class RsvpComponent implements OnInit {
       'firstName' : this.authService.user.firstName,
       'lastName' : this.authService.user.lastName
     }).subscribe(data => {
-      console.log(data);
       this.guest = data;
       this.guest.rsvp ? this.edit = true : this.edit = false;
-      console.log(this.edit);
       this.edit === false ? this.comments.nativeElement.value = '' :  this.getRsvp();
     });
 
@@ -53,7 +51,6 @@ export class RsvpComponent implements OnInit {
   getRsvp() {
     this.rsvpService.getRsvp()
       .subscribe(data => {
-
         this.setUpFormForEdit(data);
       });
   }
@@ -81,12 +78,14 @@ export class RsvpComponent implements OnInit {
     const rsvp = {
       attending: this.checkBox.nativeElement.checked === '' ? false : true,
       comments: this.comments.nativeElement.value,
-      firstName: this. authService.user.firstName,
+      firstName: this.authService.user.firstName,
       lastName: this.authService.user.lastName,
       totalAttending: this.totalAttending,
       underSixAttending: this.underSixAttending,
       userId: this.authService.user._id
     };
+
+    console.log('comments', this.comments.nativeElement.value);
 
     if (rsvp.totalAttending < 0 || rsvp.underSixAttending < 0) {
       this.flashMessage.nativeElement.classList.add('alert-danger');
@@ -123,6 +122,8 @@ export class RsvpComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 3000);
+      }, err => {
+        console.error(err._body);
       });
   }
 
@@ -150,3 +151,10 @@ export class RsvpComponent implements OnInit {
   }
 
 }
+
+
+// this.comments.nativeElement.value === ''
+//         || this.comments.nativeElement.value === null
+//         || this.comments.nativeElement.value === undefined
+//           ? ''
+//           : this.comments.nativeElement.value
