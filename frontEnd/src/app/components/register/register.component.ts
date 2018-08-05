@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
             }, 3000);
         }
       }, err => {
-        console.log(err._body);
         this.flashMessage.nativeElement.classList.add('alert-danger');
             this.flashMessageContent.nativeElement.innerHTML = err._body;
             setTimeout(() => {

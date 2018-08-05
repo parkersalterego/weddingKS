@@ -29,9 +29,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-UserSchema.path('email').validate((email) => {
-    let emailRegex = /^([\w-]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return emailRegex.test(email);
-}, 'Please input a valid email address');
-
 const User = module.exports = mongoose.model('User', UserSchema);
